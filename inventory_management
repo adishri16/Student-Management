@@ -1,0 +1,53 @@
+import java.util.*;
+
+class Item {
+    int id;
+    String name;
+    int quantity;
+
+    Item(int id, String name, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+    }
+
+    public String toString() {
+        return "ID: " + id + ", Name: " + name + ", Quantity: " + quantity;
+    }
+}
+
+public class InventoryManagement {
+    static ArrayList<Item> inventory = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n1. Add Item\n2. View Inventory\n3. Update Quantity\n4. Delete Item\n5. Exit");
+            System.out.print("Choose: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter ID: ");
+                    int id = sc.nextInt();
+                    System.out.print("Enter Name: ");
+                    String name = sc.next();
+                    System.out.print("Enter Quantity: ");
+                    int quantity = sc.nextInt();
+                    inventory.add(new Item(id, name, quantity));
+                    break;
+
+                case 2:
+                    for (Item item : inventory)
+                        System.out.println(item);
+                    break;
+
+                case 3:
+                    System.out.print("Enter ID to update: ");
+                    int uid = sc.nextInt();
+                    System.out.print("Enter new quantity: ");
+                    int newQty = sc.nextInt();
+                    for (Item item : inventory) {
+                        if (item.id == uid) {
