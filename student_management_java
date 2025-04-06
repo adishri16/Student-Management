@@ -1,0 +1,58 @@
+import java.util.*;
+
+class Student {
+    String name;
+    int roll;
+
+    Student(String name, int roll) {
+        this.name = name;
+        this.roll = roll;
+    }
+
+    public String toString() {
+        return "Roll: " + roll + ", Name: " + name;
+    }
+}
+
+public class StudentManagement {
+    static ArrayList<Student> students = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n1. Add Student\n2. View Students\n3. Delete Student\n4. Exit");
+            System.out.print("Choose: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter name: ");
+                    String name = sc.next();
+                    System.out.print("Enter roll: ");
+                    int roll = sc.nextInt();
+                    students.add(new Student(name, roll));
+                    break;
+
+                case 2:
+                    for (Student s : students)
+                        System.out.println(s);
+                    break;
+
+                case 3:
+                    System.out.print("Enter roll to delete: ");
+                    int r = sc.nextInt();
+                    students.removeIf(s -> s.roll == r);
+                    break;
+
+                case 4:
+                    System.out.println("Exiting...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        } while (choice != 4);
+    }
+}
